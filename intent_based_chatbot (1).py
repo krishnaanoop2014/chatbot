@@ -7,25 +7,24 @@ Original file is located at
     https://colab.research.google.com/drive/1DGCmJo5iksFFmcS3LqXks8_yRvIJ0ZWG
 """
 
-# Commented out IPython magic to ensure Python compatibility.
-# %%writefile intent_based_chatbot.py
-# import os
-# import json
-# import datetime
-# import csv
-# import ssl
-# import nltk
-# import streamlit as st
-# import random
-# from sklearn.feature_extraction.text import TfidfVectorizer
-# from sklearn.linear_model import LogisticRegression
-# from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-# 
-# # Setup for NLTK
-# ssl._create_default_https_context = ssl._create_unverified_context
-# nltk.data.path.append(os.path.abspath("nltk_data"))
-# nltk.download('punkt')
-#
+
+%%writefile intent_based_chatbot.py
+import os
+import json
+import datetime
+import csv
+import ssl
+import nltk
+import streamlit as st
+import random
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+#Setup for NLTK
+ssl._create_default_https_context = ssl._create_unverified_context
+nltk.data.path.append(os.path.abspath("nltk_data"))
+nltk.download('punkt')
+
 
 intents = [
     {
@@ -3450,8 +3449,8 @@ if user_input:
   if response.lower() in {'goodbye', 'bye'}:
     st.write("Chatbot: Goodbye! Have a great day!")
     st.stop()
-
-elif choice == "Conversation History":
+choice = "conversation history"
+elif choice == "conversation history":
     st.header("Conversation History")
     with open('chat_log.csv', 'r', encoding='utf-8') as csvfile:
         csv_reader = csv.reader(csvfile)
@@ -3469,5 +3468,7 @@ elif choice == "About":
     VADER sentiment analysis to detect emotions (positive, negative, or neutral).
     The chatbot responds accordingly, combining intent and sentiment for a more personalized interaction.
      It is deployed using Streamlit for a user-friendly web interface.""")
+else:
+    st.write("something")
 if __name__ == "__main__":
     main()
